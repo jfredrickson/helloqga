@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8">
+
     <title>HELLO Q GA</title>
+
     <style>
       @font-face {
         font-family: FrozenCrystalLight;
@@ -22,14 +26,14 @@
         align-items: center;
       }
 
-      #message {
+      #display {
         position: absolute;
         right: 0;
         white-space: nowrap;
         overflow-x: hidden;
 
         font-family: 'FrozenCrystalLight';
-        font-size: 48pt;
+        font-size: 40pt;
         color: #77ffff;
         text-shadow: 0px 0px 10px #77ffff;
       }
@@ -38,20 +42,38 @@
         color: #181818;
         text-shadow: none;
       }
+
+      input {
+        position: absolute;
+        left: -999em;
+      }
     </style>
   </head>
   <body>
     <div id="container">
-      <div id="message"><span class="dim">88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888</span>HELLO<span class="dim">8</span>Q<span class="dim">8</span>GA<span class="dim">8</span></div>
+      <div id="display"><span class="dim">88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888</span>hello<span class="dim">8</span>q<span class="dim">8</span>ga<span class="dim">8</span></div>
+      <input id="input" type="text" autofocus>
     </div>
 
     <script>
-      const message = document.getElementById('message');
-      document.body.addEventListener('keypress', event => {
+      const display = document.getElementById('display');
+      const input = document.getElementById('input');
+
+      document.body.addEventListener('click', event => {
+        input.focus();
+      });
+
+      input.addEventListener('keypress', event => {
         if (event.key.length === 1) {
-          const key = event.key === ' ' ? '<span class="dim">8</span>' : event.key;
-          message.innerHTML += key;
+          const key = event.key === ' ' ? '<span class="dim">8</span>' : event.key.toLowerCase();
+          display.innerHTML += key;
         }
+      });
+
+      input.addEventListener('blur', event => {
+        setTimeout(() => {
+          input.focus();
+        }, 10);
       });
     </script>
   </body>
