@@ -60,13 +60,20 @@
       const display = document.getElementById('display');
       const input = document.getElementById('input');
 
+      function map(key) {
+        // We want the look of some lowercase and some uppercase letters in this font
+        const letters = "abcdefghIjklMNopqrstuvWxyz";
+        const index = letters.toLowerCase().indexOf(key.toLowerCase());
+        return index > 0 ? letters[index] : key;
+      }
+
       document.body.addEventListener('click', event => {
         input.focus();
       });
 
       input.addEventListener('keypress', event => {
         if (event.key.length === 1) {
-          const key = event.key === ' ' ? '<span class="dim">8</span>' : event.key.toLowerCase();
+          const key = event.key === ' ' ? '<span class="dim">8</span>' : map(event.key);
           display.innerHTML += key;
         }
       });
